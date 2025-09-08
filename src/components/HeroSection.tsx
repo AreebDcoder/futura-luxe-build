@@ -64,14 +64,10 @@ const HeroSection = () => {
         </p>
 
         {/* Call to Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up" style={{ animationDelay: '0.6s' }}>
+        <div className="flex justify-center fade-in-up" style={{ animationDelay: '0.6s' }}>
           <Button variant="premium" size="xl" className="group">
             Get Started Today
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
-          <Button variant="hero" size="xl" className="group">
-            <Play className="mr-2 w-5 h-5" />
-            Watch Our Story
           </Button>
         </div>
 

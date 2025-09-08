@@ -130,7 +130,7 @@ const AboutSection = () => {
             {/* Floating Stats Card */}
             <div className="absolute -bottom-8 -left-8 glass-card p-6 rounded-xl shadow-card">
               <div className="text-center space-y-2">
-                <div className="text-2xl font-bold gradient-text">₹500+ Cr</div>
+                <div className="text-2xl font-bold gradient-text">PKR 500+ Cr</div>
                 <p className="text-sm text-muted-foreground">Projects Delivered</p>
               </div>
             </div>

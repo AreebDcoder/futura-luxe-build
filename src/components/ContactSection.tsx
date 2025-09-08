@@ -5,7 +5,9 @@ import { Button } from '@/components/ui/button';
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
     email: '',
     message: ''
   });
@@ -37,7 +39,7 @@ const ContactSection = () => {
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' });
     }, 3000);
   };
 
@@ -160,19 +162,53 @@ const ContactSection = () => {
             <div className="glass-card p-8 rounded-2xl shadow-card">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-2">
+                        First Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
+                        placeholder="Enter your first name"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="lastName" className="block text-sm font-medium text-foreground mb-2">
+                        Last Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        required
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
+                        placeholder="Enter your last name"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
+                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                      Phone Number *
                     </label>
                     <input
-                      type="text"
-                      id="name"
-                      name="name"
+                      type="tel"
+                      id="phone"
+                      name="phone"
                       required
-                      value={formData.name}
+                      value={formData.phone}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
-                      placeholder="Enter your full name"
+                      placeholder="Enter your phone number"
                     />
                   </div>
 
