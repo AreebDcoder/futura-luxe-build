@@ -75,25 +75,6 @@ const HeroSection = () => {
           </Button>
         </div>
 
-        {/* Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 fade-in-up" style={{ animationDelay: '0.8s' }}>
-          <div className="text-center space-y-2">
-            <div className="text-3xl md:text-4xl font-bold gradient-text">40+</div>
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">Years Experience</p>
-          </div>
-          <div className="text-center space-y-2">
-            <div className="text-3xl md:text-4xl font-bold gradient-text">70+</div>
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">Projects Completed</p>
-          </div>
-          <div className="text-center space-y-2">
-            <div className="text-3xl md:text-4xl font-bold gradient-text">150+</div>
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">Happy Clients</p>
-          </div>
-          <div className="text-center space-y-2">
-            <div className="text-3xl md:text-4xl font-bold gradient-text">25+</div>
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">Awards Won</p>
-          </div>
-        </div>
       </div>
 
       {/* Scroll Indicator */}
