@@ -54,18 +54,8 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Contact Info & CTA */}
+          {/* CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-              <div className="flex items-center space-x-1">
-                <Phone className="w-4 h-4" />
-                <span>+91 98765 43210</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Mail className="w-4 h-4" />
-                <span>info@jeedaar.com</span>
-              </div>
-            </div>
             <Button variant="premium" size="lg">
               Get Quote
             </Button>
@@ -98,15 +88,7 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <div className="pt-4 border-t border-border/50 space-y-3">
-                <div className="flex items-center space-x-2 text-muted-foreground">
-                  <Phone className="w-4 h-4" />
-                  <span>+91 98765 43210</span>
-                </div>
-                <div className="flex items-center space-x-2 text-muted-foreground">
-                  <Mail className="w-4 h-4" />
-                  <span>info@jeedaar.com</span>
-                </div>
+              <div className="pt-4 border-t border-border/50">
                 <Button variant="premium" size="lg" className="w-full">
                   Get Quote
                 </Button>

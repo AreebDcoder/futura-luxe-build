@@ -91,10 +91,6 @@ const ContactSection = () => {
             Let's Build Something 
             <span className="gradient-text"> Extraordinary</span>
           </h2>
-          <p className="body-lg max-w-3xl mx-auto fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Ready to start your premium construction project? Get in touch with our expert team 
-            for a consultation and let's turn your vision into reality.
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -103,7 +99,7 @@ const ContactSection = () => {
           <div className="space-y-8">
             <div className="fade-in-up" style={{ animationDelay: '0.3s' }}>
               <h3 className="heading-md text-foreground mb-6">
-                Ready to Start Your Project?
+                Contact Information
               </h3>
               <p className="body-md mb-8">
                 Our team of construction experts is here to help you bring your vision to life. 
