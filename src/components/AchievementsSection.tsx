@@ -116,29 +116,7 @@ const AchievementsSection = () => {
           })}
         </div>
 
-        {/* Bottom CTA Section */}
-        <div className="mt-20 text-center fade-in-up" style={{ animationDelay: '0.7s' }}>
-          <div className="glass-card p-8 rounded-2xl max-w-4xl mx-auto shadow-card">
-            <div className="space-y-6">
-              <h3 className="heading-md text-foreground">
-                Ready to Build Your 
-                <span className="gradient-text"> Dream Project?</span>
-              </h3>
-              <p className="body-md max-w-2xl mx-auto">
-                Join the ranks of satisfied clients who have trusted Jeedaar Builders 
-                for their premium construction needs. Let's create something extraordinary together.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-3 gradient-primary text-primary-foreground font-semibold rounded-lg hover:shadow-premium hover:scale-105 transition-all duration-300">
-                  Start Your Project
-                </button>
-                <button className="px-8 py-3 glass border-2 border-primary/30 text-primary font-semibold rounded-lg hover:bg-primary/10 hover:border-primary/50 transition-all duration-300">
-                  Schedule Consultation
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Bottom CTA Section Removed - Replaced with Our Work section */}
       </div>
     </section>
   );
