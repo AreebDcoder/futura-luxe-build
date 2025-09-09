@@ -133,32 +133,6 @@ const OurWorkSection = () => {
           ))}
         </div>
 
-        {/* Featured Video Section */}
-        <div className="mt-16 fade-in-up" style={{ animationDelay: '0.7s' }}>
-          <div className="glass-card rounded-2xl p-8 text-center shadow-card">
-            <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-primary/10 rounded-full">
-                <Film className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">Featured Project</span>
-              </div>
-              
-              <h3 className="heading-md text-foreground">
-                40 Years of Excellence in 
-                <span className="gradient-text"> Construction</span>
-              </h3>
-              
-              <p className="body-md max-w-2xl mx-auto">
-                Take a journey through our most prestigious projects and see why clients 
-                choose Jeedaar Builders for their most important construction needs.
-              </p>
-              
-              <button className="px-8 py-4 gradient-primary text-primary-foreground font-semibold rounded-lg hover:shadow-premium hover:scale-105 transition-all duration-300 group">
-                <Play className="inline w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                Watch Full Documentary
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
