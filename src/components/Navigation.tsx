@@ -55,15 +55,15 @@ const Navigation = () => {
           </div>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="premium" size="lg">
-              Get Quote
+          <div className="hidden md:flex items-center space-x-4">
+            <Button variant="premium" size="lg" className="text-sm md:text-base whitespace-nowrap" asChild>
+              <a href="#contact">Get Quote</a>
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg glass hover:bg-primary/10 transition-colors"
+            className="md:hidden p-2 rounded-lg glass hover:bg-primary/10 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
@@ -76,7 +76,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 glass-card shadow-premium border-t border-border/50">
+          <div className="md:hidden absolute top-full left-0 right-0 glass-card shadow-premium border-t border-border/50">
             <div className="p-6 space-y-6">
               {navItems.map((item) => (
                 <a
@@ -89,8 +89,8 @@ const Navigation = () => {
                 </a>
               ))}
               <div className="pt-4 border-t border-border/50">
-                <Button variant="premium" size="lg" className="w-full">
-                  Get Quote
+                <Button variant="premium" size="lg" className="w-full text-sm" asChild>
+                  <a href="#contact" onClick={() => setIsMenuOpen(false)}>Get Quote</a>
                 </Button>
               </div>
             </div>

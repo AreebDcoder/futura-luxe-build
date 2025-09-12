@@ -81,6 +81,18 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
-    "vite": "^5.4.19"
-  }
+    "vite": "^5.4.20"
+  },
+  "description": "**URL**: https://lovable.dev/projects/10618428-a7ec-4c3c-bcee-c36584f68d07",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AreebDcoder/futura-luxe-build.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AreebDcoder/futura-luxe-build/issues"
+  },
+  "homepage": "https://github.com/AreebDcoder/futura-luxe-build#readme"
 }

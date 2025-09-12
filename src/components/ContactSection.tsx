@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const ContactSection = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -12,6 +14,9 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,21 +38,71 @@ const ContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ firstName: '', lastName: '', phone: '', email: '', message: '' });
-    }, 3000);
+    setIsLoading(true);
+    setErrors({});
+    setSubmitError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Navigate to success page with form data
+        navigate('/success', {
+          state: {
+            formData: formData,
+            submissionTime: new Date().toISOString()
+          }
+        });
+      } else {
+        // Handle validation errors
+        if (data.details && Array.isArray(data.details)) {
+          const fieldErrors: Record<string, string> = {};
+          data.details.forEach((error: any) => {
+            fieldErrors[error.field] = error.message;
+          });
+          setErrors(fieldErrors);
+        } else {
+          setSubmitError(data.message || 'Something went wrong. Please try again.');
+        }
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      
+      // If it's a network error (backend not running), show a helpful message
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        setSubmitError('Backend server is not running. Please start the backend server on port 5000 and try again.');
+      } else {
+        setSubmitError('Network error. Please check your connection and try again.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const contactInfo = [
@@ -170,9 +225,17 @@ const ContactSection = () => {
                         required
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
+                        className={`w-full px-4 py-3 bg-input border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground ${
+                          errors.firstName ? 'border-red-500 focus:ring-red-500/50 focus:border-red-500' : 'border-border'
+                        }`}
                         placeholder="Enter your first name"
                       />
+                      {errors.firstName && (
+                        <div className="mt-1 flex items-center text-red-500 text-sm">
+                          <AlertCircle className="w-4 h-4 mr-1" />
+                          {errors.firstName}
+                        </div>
+                      )}
                     </div>
 
                     <div>
@@ -186,9 +249,17 @@ const ContactSection = () => {
                         required
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
+                        className={`w-full px-4 py-3 bg-input border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground ${
+                          errors.lastName ? 'border-red-500 focus:ring-red-500/50 focus:border-red-500' : 'border-border'
+                        }`}
                         placeholder="Enter your last name"
                       />
+                      {errors.lastName && (
+                        <div className="mt-1 flex items-center text-red-500 text-sm">
+                          <AlertCircle className="w-4 h-4 mr-1" />
+                          {errors.lastName}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -203,9 +274,17 @@ const ContactSection = () => {
                       required
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
+                      className={`w-full px-4 py-3 bg-input border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground ${
+                        errors.phone ? 'border-red-500 focus:ring-red-500/50 focus:border-red-500' : 'border-border'
+                      }`}
                       placeholder="Enter your phone number"
                     />
+                    {errors.phone && (
+                      <div className="mt-1 flex items-center text-red-500 text-sm">
+                        <AlertCircle className="w-4 h-4 mr-1" />
+                        {errors.phone}
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -219,9 +298,17 @@ const ContactSection = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground"
+                      className={`w-full px-4 py-3 bg-input border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground ${
+                        errors.email ? 'border-red-500 focus:ring-red-500/50 focus:border-red-500' : 'border-border'
+                      }`}
                       placeholder="Enter your email address"
                     />
+                    {errors.email && (
+                      <div className="mt-1 flex items-center text-red-500 text-sm">
+                        <AlertCircle className="w-4 h-4 mr-1" />
+                        {errors.email}
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -235,19 +322,44 @@ const ContactSection = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground resize-none"
+                      className={`w-full px-4 py-3 bg-input border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-300 text-foreground resize-none ${
+                        errors.message ? 'border-red-500 focus:ring-red-500/50 focus:border-red-500' : 'border-border'
+                      }`}
                       placeholder="Tell us about your project requirements..."
                     />
+                    {errors.message && (
+                      <div className="mt-1 flex items-center text-red-500 text-sm">
+                        <AlertCircle className="w-4 h-4 mr-1" />
+                        {errors.message}
+                      </div>
+                    )}
                   </div>
+
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center text-red-700">
+                      <AlertCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+                      <span className="text-sm">{submitError}</span>
+                    </div>
+                  )}
 
                   <Button 
                     type="submit" 
                     variant="premium" 
                     size="lg" 
                     className="w-full group"
+                    disabled={isLoading}
                   >
-                    Send Message
-                    <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                        Sending Message...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </Button>
                 </form>
               ) : (

@@ -65,9 +65,12 @@ const HeroSection = () => {
 
         {/* Call to Action Buttons */}
         <div className="flex justify-center fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <Button variant="premium" size="xl" className="group">
-            Get Started Today
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+          <Button variant="premium" size="xl" className="group whitespace-nowrap px-4 sm:px-6 md:px-10" asChild>
+            <a href="#contact">
+              <span className="hidden sm:inline">Get Started Today</span>
+              <span className="sm:hidden">Get Started</span>
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
           </Button>
         </div>
 

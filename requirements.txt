@@ -1,0 +1,4 @@
+# Python dependencies for futura-luxe-build
+# Currently no external dependencies required for the simple main.py script
+# Add dependencies here as needed for future Python functionality
+

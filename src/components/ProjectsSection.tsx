@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { ExternalLink, MapPin, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import project1 from '@/assets/project-1.jpg';
-import project2 from '@/assets/project-2.jpg';
-import project3 from '@/assets/project-3.jpg';
+import { projects } from '@/data/projects';
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -28,38 +27,8 @@ const ProjectsSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: 'Skyline Corporate Tower',
-      description: 'A 45-story premium commercial complex in the heart of Mumbai featuring state-of-the-art facilities and sustainable design.',
-      image: project1,
-      location: 'Mumbai, Maharashtra',
-      year: '2023',
-      category: 'Commercial',
-      area: '2.5M sq ft'
-    },
-    {
-      id: 2,
-      title: 'Royal Heights Residency',
-      description: 'Luxury residential development with 200+ premium apartments offering panoramic city views and world-class amenities.',
-      image: project2,
-      location: 'Bangalore, Karnataka',
-      year: '2022',
-      category: 'Residential',
-      area: '1.8M sq ft'
-    },
-    {
-      id: 3,
-      title: 'Metro Shopping Center',
-      description: 'Modern retail and entertainment destination spanning 5 levels with innovative architecture and smart building technology.',
-      image: project3,
-      location: 'Delhi NCR',
-      year: '2024',
-      category: 'Retail',
-      area: '3.2M sq ft'
-    }
-  ];
+  // Display first 3 projects on homepage
+  const featuredProjects = projects.slice(0, 3);
 
   return (
     <section ref={sectionRef} id="projects" className="py-24 bg-muted/30 relative overflow-hidden">
@@ -90,7 +59,7 @@ const ProjectsSection = () => {
 
         {/* Projects Grid */}
         <div className="grid lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <div 
               key={project.id}
               className="group scale-in"
@@ -107,10 +76,12 @@ const ProjectsSection = () => {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                     <div className="p-6">
-                      <Button variant="hero" size="sm">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Details
-                      </Button>
+                      <Link to={`/projects/${project.id}`}>
+                        <Button variant="hero" size="sm">
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          View Details
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                   
@@ -125,9 +96,11 @@ const ProjectsSection = () => {
                 {/* Project Content */}
                 <div className="p-6 space-y-4">
                   <div>
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
+                    <Link to={`/projects/${project.id}`}>
+                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                    </Link>
                     <p className="text-sm text-muted-foreground line-clamp-3">
                       {project.description}
                     </p>
@@ -157,10 +130,12 @@ const ProjectsSection = () => {
 
         {/* View All Projects */}
         <div className="text-center mt-16 fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <Button variant="premium" size="lg">
-            View All Projects
-            <ExternalLink className="ml-2 w-5 h-5" />
-          </Button>
+          <Link to="/projects">
+            <Button variant="premium" size="lg">
+              View All Projects
+              <ExternalLink className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
