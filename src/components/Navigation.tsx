@@ -18,8 +18,8 @@ const Navigation = () => {
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'Our Services', href: '#services' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Our Work', href: '#our-work' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -56,7 +56,7 @@ const Navigation = () => {
 
           {/* CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="premium" size="lg" className="text-sm md:text-base whitespace-nowrap" asChild>
+            <Button variant="premium" size="sm" className="text-xs sm:text-sm md:text-base whitespace-nowrap px-3 sm:px-4 md:px-6" asChild>
               <a href="#contact">Get Quote</a>
             </Button>
           </div>
@@ -89,7 +89,7 @@ const Navigation = () => {
                 </a>
               ))}
               <div className="pt-4 border-t border-border/50">
-                <Button variant="premium" size="lg" className="w-full text-sm" asChild>
+                <Button variant="premium" size="md" className="w-full text-sm" asChild>
                   <a href="#contact" onClick={() => setIsMenuOpen(false)}>Get Quote</a>
                 </Button>
               </div>

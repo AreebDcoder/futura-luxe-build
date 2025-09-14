@@ -121,7 +121,7 @@ const Success = () => {
             <p className="text-sm text-muted-foreground mb-2">Need immediate assistance?</p>
             <div className="flex items-center justify-center space-x-2 text-primary font-medium">
               <Phone className="w-4 h-4" />
-              <span>+91 98765 43210</span>
+              <span>+923009564514</span>
             </div>
           </div>
         </div>

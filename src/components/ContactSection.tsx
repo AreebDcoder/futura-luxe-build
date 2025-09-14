@@ -109,7 +109,7 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      details: '+91 98765 43210',
+      details: '+923009564514',
       subDetails: 'Mon-Sat: 9AM - 6PM'
     },
     {
@@ -121,8 +121,8 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: 'Corporate Office',
-      subDetails: 'Mumbai, Maharashtra'
+      details: 'Victory tower, F-8 Markaz',
+      subDetails: 'Islamabad, Pakistan'
     }
   ];
 

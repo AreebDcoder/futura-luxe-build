@@ -12,8 +12,6 @@ import {
   CheckCircle,
   Lightbulb,
   Target,
-  ChevronLeft,
-  ChevronRight,
   ExternalLink,
   Phone,
   Mail
@@ -22,12 +20,12 @@ import { Button } from '@/components/ui/button';
 import { getProjectById, projects } from '@/data/projects';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [project, setProject] = useState(getProjectById(Number(id)));
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [relatedProjects, setRelatedProjects] = useState(projects.slice(0, 3));
 
   useEffect(() => {
@@ -72,13 +70,6 @@ const ProjectDetail = () => {
     );
   }
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
-  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -131,7 +122,7 @@ const ProjectDetail = () => {
                 </span>
               </div>
               
-              <h1 className="heading-xl gradient-text mb-6">
+              <h1 className="text-3xl font-bold gradient-text mb-6">
                 {project.title}
               </h1>
               
@@ -144,7 +135,6 @@ const ProjectDetail = () => {
                 {[
                   { icon: MapPin, label: 'Location', value: project.location },
                   { icon: Calendar, label: 'Year', value: project.year },
-                  { icon: Building, label: 'Area', value: project.area },
                   { icon: Users, label: 'Client', value: project.client }
                 ].map((info, index) => {
                   const Icon = info.icon;
@@ -163,47 +153,14 @@ const ProjectDetail = () => {
               </div>
             </div>
 
-            {/* Image Gallery */}
+            {/* Project Image */}
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl shadow-premium">
                 <img
-                  src={project.images[currentImageIndex]}
-                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-96 object-cover"
                 />
-                
-                {/* Image Navigation */}
-                {project.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-background/80 hover:bg-background rounded-full flex items-center justify-center transition-all duration-300"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-background/80 hover:bg-background rounded-full flex items-center justify-center transition-all duration-300"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </>
-                )}
-
-                {/* Image Indicators */}
-                {project.images.length > 1 && (
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                    {project.images.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentImageIndex ? 'bg-primary' : 'bg-white/50'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -216,31 +173,6 @@ const ProjectDetail = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Project Info */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Overview */}
-              <div className="glass-card p-8 rounded-2xl">
-                <h2 className="text-2xl font-bold text-foreground mb-6">Project Overview</h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    { icon: Clock, label: 'Duration', value: project.duration },
-                    { icon: IndianRupee, label: 'Investment', value: project.cost },
-                    { icon: Users, label: 'Architect', value: project.architect },
-                    { icon: Building, label: 'Floors', value: project.specifications.floors.toString() }
-                  ].map((detail, index) => {
-                    const Icon = detail.icon;
-                    return (
-                      <div key={index} className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <div className="text-sm text-muted-foreground">{detail.label}</div>
-                          <div className="font-semibold text-foreground">{detail.value}</div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
 
               {/* Features */}
               <div className="glass-card p-8 rounded-2xl">
@@ -352,16 +284,18 @@ const ProjectDetail = () => {
                   Contact us to discuss your project requirements and get a customized proposal.
                 </p>
                 <div className="space-y-3">
-                  <Link to="/contact">
+                  <Link to="/#contact">
                     <Button variant="premium" className="w-full">
                       <Mail className="mr-2 w-4 h-4" />
                       Get Quote
                     </Button>
                   </Link>
-                  <Button variant="hero" className="w-full">
-                    <Phone className="mr-2 w-4 h-4" />
-                    Call Now
-                  </Button>
+                  <a href="tel:+923009564514">
+                    <Button variant="hero" className="w-full">
+                      <Phone className="mr-2 w-4 h-4" />
+                      Call Now
+                    </Button>
+                  </a>
                 </div>
               </div>
 
@@ -399,6 +333,7 @@ const ProjectDetail = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

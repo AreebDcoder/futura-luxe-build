@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { projects } from '@/data/projects';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState(projects);
@@ -12,7 +13,7 @@ const Projects = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const categories = ['all', 'commercial', 'residential', 'retail', 'industrial', 'heritage', 'infrastructure'];
+  const categories = ['all', 'institutional', 'diplomatic', 'commercial', 'judicial', 'hospitality', 'residential'];
   const statuses = ['all', 'completed', 'ongoing', 'upcoming'];
 
   useEffect(() => {
@@ -42,6 +43,11 @@ const Projects = () => {
     setFilteredProjects(filtered);
   }, [selectedCategory, selectedStatus, searchTerm]);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
@@ -58,6 +64,9 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
+      
+      {/* Top Anchor */}
+      <div id="top" className="scroll-mt-20"></div>
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 bg-gradient-to-br from-background via-background to-primary/5">
@@ -83,27 +92,6 @@ const Projects = () => {
               across commercial, residential, retail, and infrastructure development. Each project 
               represents our commitment to architectural excellence and innovative construction solutions.
             </p>
-            
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { icon: Building, label: 'Total Projects', value: projects.length.toString() },
-                { icon: Users, label: 'Happy Clients', value: '150+' },
-                { icon: Award, label: 'Awards Won', value: '25+' },
-                { icon: MapPin, label: 'Cities', value: '12+' }
-              ].map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={index} className="text-center">
-                    <div className="w-12 h-12 gradient-primary rounded-lg flex items-center justify-center mx-auto mb-2">
-                      <Icon className="w-6 h-6 text-primary-foreground" />
-                    </div>
-                    <div className="font-bold text-lg text-foreground">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </section>
@@ -241,8 +229,7 @@ const Projects = () => {
                           <span>{project.year}</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-primary">{project.area}</span>
+                      <div className="text-right">
                         <span className="text-xs text-muted-foreground">{project.client}</span>
                       </div>
                     </div>
@@ -255,6 +242,7 @@ const Projects = () => {
       </section>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

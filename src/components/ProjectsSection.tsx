@@ -118,9 +118,6 @@ const ProjectsSection = () => {
                         <span>{project.year}</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <span className="text-xs font-semibold text-primary">{project.area}</span>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -130,7 +127,7 @@ const ProjectsSection = () => {
 
         {/* View All Projects */}
         <div className="text-center mt-16 fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <Link to="/projects">
+          <Link to="/projects#top">
             <Button variant="premium" size="lg">
               View All Projects
               <ExternalLink className="ml-2 w-5 h-5" />
