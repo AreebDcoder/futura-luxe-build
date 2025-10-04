@@ -45,7 +45,7 @@ export const projects: Project[] = [
     description: 'Modern institutional complex showcasing expertise in contemporary commercial architecture and complex infrastructure development with distinctive glass and concrete facade.',
     fullDescription: 'This sophisticated institutional building showcases our expertise in contemporary commercial architecture and complex infrastructure development. The project features a striking modern design with a distinctive glass and concrete facade, incorporating advanced curtain wall systems and precision masonry work. The multi-story institutional complex demonstrates our capability to deliver high-end institutional construction that combines aesthetic appeal with functional excellence, meeting the demanding standards required for educational and research facilities.',
     image: fastBuilding,
-    location: 'Islamabad, Pakistan',
+    location: 'G-9, Islamabad, Pakistan',
     year: '1998',
     category: 'Institutional',
     status: 'completed',
@@ -92,8 +92,8 @@ export const projects: Project[] = [
     ]
   },
   {
-    id: 2,
-    title: 'International Organization Headquarters - COMSTECH Complex',
+    id: 2,//oic headquater -
+    title: 'OIC Headquarters - COMSTECH Complex',
     description: 'Prestigious international headquarters building representing expertise in high-security diplomatic and administrative facilities with sophisticated architectural design.',
     fullDescription: 'This prestigious international headquarters building represents our expertise in constructing high-security diplomatic and administrative facilities. The COMSTECH complex features sophisticated architectural design with extensive glass curtain wall systems and ceremonial elements befitting an international organization. This complex project showcases our ability to deliver construction that meets international diplomatic standards while incorporating both functional requirements and ceremonial significance.',
     image: comstechHQ,

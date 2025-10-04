@@ -110,7 +110,7 @@ const ContactSection = () => {
       icon: Phone,
       title: 'Call Us',
       details: '+923009564514',
-      subDetails: 'Mon-Sat: 9AM - 6PM'
+      subDetails: 'Available 24/7'
     },
     {
       icon: Mail,
@@ -121,7 +121,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: 'Victory tower, F-8 Markaz',
+      details: 'Office No.10, First Floor, Victory tower, F-8 Markaz',
       subDetails: 'Islamabad, Pakistan'
     }
   ];

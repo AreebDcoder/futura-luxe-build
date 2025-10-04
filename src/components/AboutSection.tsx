@@ -77,7 +77,7 @@ const AboutSection = () => {
             <div className="space-y-6 fade-in-up" style={{ animationDelay: '0.2s' }}>
               <p className="body-lg">
                 Since 1984, Jeedaar Builders has been at the forefront of premium construction, 
-                creating architectural marvels that define modern skylines across India. Our legacy 
+                creating architectural marvels that define modern skylines across Pakistan. Our legacy 
                 is built on unwavering commitment to quality, innovation, and client satisfaction.
               </p>
               <p className="body-md">
@@ -128,14 +128,15 @@ const AboutSection = () => {
             </div>
 
             {/* Floating Stats Card */}
-            <div className="absolute -bottom-8 -left-8 glass-card p-6 rounded-xl shadow-card">
+        { /*   <div className="absolute -bottom-8 -left-8 glass-card p-6 rounded-xl shadow-card">
               <div className="text-center space-y-2">
                 <div className="text-2xl font-bold gradient-text">PKR 500+ Cr</div>
                 <p className="text-sm text-muted-foreground">Projects Delivered</p>
               </div>
             </div>
+            */}
 
-            {/* Floating Award Card */}
+            {/* Floating Award Card 
             <div className="absolute -top-8 -right-8 glass-card p-4 rounded-xl shadow-card">
               <div className="flex items-center space-x-3">
                 <Award className="w-8 h-8 text-primary" />
@@ -145,6 +146,7 @@ const AboutSection = () => {
                 </div>
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>
